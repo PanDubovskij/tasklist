@@ -41,7 +41,7 @@ public class JwtTokenProvider {
     }
 
     public String createAccessToken(Long userId, String username, Set<Role> roles) {
-        Claims claims = Jwts.claims().setSubject(username).build();
+        Claims claims = Jwts.claims().setSubject(username);
         claims.put("id", userId);
         claims.put("roles", resolveRoles(roles));
         Date now = new Date();
@@ -61,7 +61,7 @@ public class JwtTokenProvider {
     }
 
     public String createRefreshToken(Long userId, String username) {
-        Claims claims = Jwts.claims().setSubject(username).build();
+        Claims claims = Jwts.claims().setSubject(username);
         claims.put("id", userId);
         Date now = new Date();
         Date validity = new Date(now.getTime() + jwtProperties.getRefresh());
@@ -91,7 +91,6 @@ public class JwtTokenProvider {
         Jws<Claims> claims = Jwts
                 .parser()
                 .setSigningKey(key)
-                .build()
                 .parseClaimsJws(token);
         return !claims.getBody().getExpiration().before(new Date());
     }
@@ -100,7 +99,6 @@ public class JwtTokenProvider {
         return Jwts
                 .parser()
                 .setSigningKey(key)
-                .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .get("id")
@@ -111,7 +109,6 @@ public class JwtTokenProvider {
         return Jwts
                 .parser()
                 .setSigningKey(key)
-                .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();

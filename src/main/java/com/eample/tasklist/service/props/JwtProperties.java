@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class JwtProperties {
 
     private String secret;
-    private String access;
-    private String refresh;
+    private Long access;
+    private Long refresh;
 }
