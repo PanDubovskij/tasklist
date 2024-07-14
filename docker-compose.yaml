@@ -11,10 +11,10 @@ services:
       - db
       - redis
       - minio
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/tasklist?currentSchema=tasklist
-#      - SPRING_DATASOURCE_USERNAME=postgres
-#      - SPRING_DATASOURCE_PASSWORD=postgres
+    #    environment:
+    #      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/tasklist?currentSchema=tasklist
+    #      - SPRING_DATASOURCE_USERNAME=postgres
+    #      - SPRING_DATASOURCE_PASSWORD=postgres
     env_file:
       - .env
     ports:
