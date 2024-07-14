@@ -199,8 +199,7 @@
                             <suppressionsFileExpression>
                                 checkstyle.suppressions.file
                             </suppressionsFileExpression>
-                            <suppressionsLocation>checkstyle-suppressions.xml
-                            </suppressionsLocation>
+                            <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                         </configuration>
                     </execution>
                 </executions>
