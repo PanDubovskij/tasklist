@@ -9,22 +9,29 @@ import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
 
-public class CustomSecurityExceptionHandler extends DefaultMethodSecurityExpressionHandler {
+public class CustomSecurityExceptionHandler
+        extends DefaultMethodSecurityExpressionHandler {
     private ApplicationContext applicationContext;
-    private final AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+    private final AuthenticationTrustResolver trustResolver
+            = new AuthenticationTrustResolverImpl();
 
     @Override
-    protected MethodSecurityExpressionOperations createSecurityExpressionRoot(Authentication authentication, MethodInvocation invocation) {
-        CustomMethodSecurityRoot root = new CustomMethodSecurityRoot(authentication);
+    protected MethodSecurityExpressionOperations createSecurityExpressionRoot(
+            final Authentication authentication,
+            final MethodInvocation invocation) {
+        CustomMethodSecurityRoot root
+                = new CustomMethodSecurityRoot(authentication);
         root.setTrustResolver(trustResolver);
         root.setPermissionEvaluator(getPermissionEvaluator());
         root.setRoleHierarchy(getRoleHierarchy());
-        root.setUserService(this.applicationContext.getBean(UserService.class));
+        root.setUserService(
+                this.applicationContext.getBean(UserService.class));
         return root;
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) {
+    public void setApplicationContext(
+            final ApplicationContext applicationContext) {
         super.setApplicationContext(applicationContext);
         this.applicationContext = applicationContext;
     }
